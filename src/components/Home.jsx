@@ -1,9 +1,13 @@
 import React from "react";
 import "./css/Home.css";
-import Navbar from "./Navbar";
+import logo from "../assets/logo.png";
 
 function Home() {
-  return <></>;
+  return (
+    <>
+      <img src={logo} alt="Logo" />
+    </>
+  );
 }
 
 export default Home;
