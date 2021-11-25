@@ -15,19 +15,19 @@ const Navbar = () => {
           </a>
           Home
         </NavLink>
-        <NavLink to="/karaoke" className="item w-12 h-12">
-          <a href="karaoke" className="karaoke">
+        <NavLink to="/karaoke" className="">
+          <a href="karaoke" className="">
             <img className="micro" src={micro} alt="micro" />
           </a>
           Karaoké
         </NavLink>
-        <NavLink to="/playlist" className="item w-12 h-12">
+        <NavLink to="/playlist" className="">
           <a href="playlist" className="playlist">
             <img className="play" src={play} alt="playlist" />
           </a>
           Playlist
         </NavLink>
-        <NavLink to="/blind-test" className="item w-12 h-12">
+        <NavLink to="/blind-test" className="">
           <a href="blind-test" className="blind-test">
             <img className="blind-test" src={cd} alt="blind-test" />
           </a>
