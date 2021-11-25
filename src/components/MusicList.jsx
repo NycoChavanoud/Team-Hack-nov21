@@ -4,7 +4,7 @@ import MusicItems from "./MusicItems";
 const MusicList = ({ itemsMusics }) => {
   console.log(itemsMusics);
   return (
-    <div>
+    <>
       {itemsMusics.map((item, index) => (
         <MusicItems
           key={item.index}
@@ -15,7 +15,7 @@ const MusicList = ({ itemsMusics }) => {
           isFavorite={false}
         />
       ))}
-    </div>
+    </>
   );
 };
 

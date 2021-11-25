@@ -7,11 +7,36 @@ body {
 }
 
 .container-karaoke {
-  display: inline-block;
+  display: flex;
+  height: 180px;
+  width: 100%;
+  overflow-x: scroll;
+}
+.container-karaoke::-webkit-scrollbar {
+  display: none;
 }
 
-h1 {
+#title-choice-karaoke {
   color: #f1f1f1;
   font-family: "Fira Sans", sans-serif;
   font-size: 1.6em;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin-bottom: 70px;
+}
+
+#baseline-karaoke {
+  font-family: "Fira Sans", sans-serif;
+  color: hsla(231, 55%, 10%, 0.4);
+  font-size: 2.5em;
+  font-weight: 800;
+  text-align: center;
+  margin-top: -80px;
+  letter-spacing: 20px;
+}
+
+.genre-title {
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.2em;
 }

@@ -1,28 +1,34 @@
-.item-karaoke {
-  color: red;
-  height: 120px;
-  display: inline-block;
-}
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lora&display=swap");
 
 .jacket-module {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: -5px;
 }
 
 #jacket {
-  height: 120px;
-  width: 120px;
+  height: 125px;
+  width: 125px;
   border-radius: 13px;
 }
 
 #song-name {
   color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.7em;
+  font-weight: 500;
+  margin-top: 3px;
+  margin-bottom: 1px;
 }
 
 #artist-name {
   color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.6em;
 }
 
 .overlay {
@@ -49,4 +55,9 @@
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4f/Ei-heart.svg");
   background-size: 100%;
   align-self: flex-start;
+}
+
+.video-module {
+  width: 95%;
+  height: auto;
 }

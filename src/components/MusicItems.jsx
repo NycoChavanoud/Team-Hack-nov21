@@ -4,12 +4,12 @@ import "./css/MusicItem.css";
 import ReactPlayer from "react-player";
 
 const MusicItems = ({ songName, artist, linkKaraoke, jacket }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const [isFavorite, setIsFavorite] = useState(false);
   const [displayPopup, setDisplayPopup] = useState(false);
 
-  function handleClickfavorite() {
-    setIsFavorite(!isFavorite);
-  }
+  // function handleClickfavorite() {
+  //   setIsFavorite(!isFavorite);
+  // }
 
   return (
     <div className="item-karaoke">
@@ -35,9 +35,9 @@ const MusicItems = ({ songName, artist, linkKaraoke, jacket }) => {
           <ReactPlayer url={linkKaraoke} controls={true} />
         </div>
       </div>
-      <div id="favorite" onClick={handleClickfavorite}>
+      {/* <div id="favorite" onClick={handleClickfavorite}>
         <div className={isFavorite ? "isFavorite" : "notFavorite"} alt="" />
-      </div>
+      </div> */}
     </div>
   );
 };
