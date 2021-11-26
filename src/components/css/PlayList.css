@@ -12,26 +12,26 @@ body {
   letter-spacing: 1px;
   font-weight: 800;
   margin-top: 20px;
-  margin-bottom: 45px;
+  margin-bottom: 35px;
 }
 
 #photo-player {
   height: auto;
-  width: 80%;
+  width: 60%;
   border-radius: 10px;
   margin-top: 45px;
-  margin-bottom: 55px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
 }
 #search-song {
-  width: 70%;
+  width: 58%;
   margin-left: auto;
   margin-right: auto;
   height: 30px;
   border-radius: 20px;
   padding-left: 20px;
-  margin-bottom: -25px;
+  margin-bottom: -20px;
   background: #4b1db6a2;
   border-style: none;
 }
@@ -88,10 +88,39 @@ body {
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
-  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-top: 25px;
   color: #f1f1f1;
   font-family: "Fira Sans", sans-serif;
   font-size: 1em;
   text-align: center;
+}
+@media screen and (max-width: 600px) {
+  #counter-vote {
+    margin-bottom: 15px;
+    margin-top: 25px;
+  }
+
+  .vote-title {
+    margin-top: 45px;
+  }
+  #photo-player {
+    height: auto;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #search-song {
+    width: 73%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    margin-bottom: -25px;
+
+    border-style: none;
+  }
 }
