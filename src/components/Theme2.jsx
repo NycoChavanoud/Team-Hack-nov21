@@ -11,24 +11,27 @@ const Theme2 = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [currentTrackAnswers, setCurrentTrackAnswers] = useState([]);
   const [showJacket, setShowJacket] = useState(false);
-  const [soundSrc, setSoundSrc] = useState("");
+  const [blindTestStarted, setBlindTestStarted] = useState(false);
 
   const currentTrack = songsToBePlayed[currentTrackIndex];
 
   useEffect(() => {
     setShowJacket(false);
     if (currentTrack) {
-      //   setSoundSrc(currentTrack.track.preview_url);
       sound.src = currentTrack.track.preview_url;
       console.log(sound);
-      if (soundSrc !== "") sound.play();
+      sound.play();
       if (songsNotPlayed.length > 1) {
         const answers = [];
         for (let i = 0; i <= 2; i++) {
-          let trackObject = new Object(
+          //   let trackObject = new Object(
+          //     songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
+          //   ).track;
+          //   let trackName = new Object(trackObject).name;
+          let trackName =
             songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
-          ).track;
-          let trackName = new Object(trackObject).name;
+              .track.name;
+          console.log(trackName);
           answers.push(trackName);
         }
         answers.push(currentTrack.track.name);
@@ -39,7 +42,6 @@ const Theme2 = () => {
   }, [currentTrack, songsNotPlayed]);
 
   function handleClick(e) {
-    // sound.src = currentTrack.track.preview_url;
     console.log(sound);
     sound.pause();
 
@@ -53,43 +55,47 @@ const Theme2 = () => {
 
     setTimeout(() => {
       setCurrentTrackIndex(currentTrackIndex + 1);
-      setSoundSrc(currentTrack.track.preview_url);
+      sound.src = currentTrack.track.preview_url;
     }, 1500);
   }
 
   useEffect(() => {
-    axios
-      .get(
-        "https://cors-proxy.jsrover.wilders.dev/https://api.spotify.com/v1/search?q=hit%20radio&type=playlist&market=FR&limit=1",
-        {
-          headers: {
-            Accept: "application/json",
-            ContentType: "application/json",
-            Authorization:
-              "Bearer BQAZTCpqVCB-jgaI4jYeBHuUh0RS3B4845PpF4msinCVIFWhpfsIEFuu9ufe8zmShzpNNpGwrqqRfjrMLFo7pjiRoQnekDLKrSXQieRwET0Ip9IMnlu07llZb3EtxRO1icAeQ4j5Z8WeSw",
-          },
-        }
-      )
-      .then((res) => {
-        const playlistURL = res.data.playlists.items[0].tracks.href;
-        axios
-          .get(`https://cors-proxy.jsrover.wilders.dev/${playlistURL}`, {
+    if (blindTestStarted)
+      axios
+        .get(
+          "https://cors-proxy.jsrover.wilders.dev/https://api.spotify.com/v1/search?q=hit%20radio&type=playlist&market=FR&limit=1",
+          {
             headers: {
               Accept: "application/json",
               ContentType: "application/json",
               Authorization:
-                "Bearer BQAZTCpqVCB-jgaI4jYeBHuUh0RS3B4845PpF4msinCVIFWhpfsIEFuu9ufe8zmShzpNNpGwrqqRfjrMLFo7pjiRoQnekDLKrSXQieRwET0Ip9IMnlu07llZb3EtxRO1icAeQ4j5Z8WeSw",
+                "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
             },
-          })
-          .then((res) => {
-            const shuffledPlaylist = _.shuffle(res.data.items);
-            const selectedSongs = shuffledPlaylist.slice(0, 10);
-            const dismissedSongs = shuffledPlaylist.slice(10, -1);
-            setSongsToBePlayed(selectedSongs);
-            setSongsNotPlayed(dismissedSongs);
-          });
-      });
-  }, []);
+          }
+        )
+        .then((res) => {
+          const playlistURL = res.data.playlists.items[0].tracks.href;
+          axios
+            .get(`https://cors-proxy.jsrover.wilders.dev/${playlistURL}`, {
+              headers: {
+                Accept: "application/json",
+                ContentType: "application/json",
+                Authorization:
+                  "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
+              },
+            })
+            .then((res) => {
+              const shuffledPlaylist = _.shuffle(res.data.items);
+              const selectedSongs = shuffledPlaylist.slice(0, 10);
+              const dismissedSongs = shuffledPlaylist.slice(10, -1);
+              setSongsToBePlayed(selectedSongs);
+              setSongsNotPlayed(dismissedSongs);
+            });
+        });
+  }, [blindTestStarted]);
+
+  if (!blindTestStarted)
+    return <button onClick={() => setBlindTestStarted(true)}>PLAY</button>;
 
   return (
     <div>
@@ -101,7 +107,7 @@ const Theme2 = () => {
         />
       </div>
       <div className="answers-container">
-        {currentTrackAnswers.map((answer) => (
+        {currentTrackAnswers.map((answer, index) => (
           <div
             key={answer}
             className={
