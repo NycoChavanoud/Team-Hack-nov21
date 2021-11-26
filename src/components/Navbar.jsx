@@ -1,13 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./css/Navbar.css";
+import home from "../assets/note.png";
+import micro from "../assets/micro.png";
+import play from "../assets/play.png";
+import cd from "../assets/cd.png";
 
 const Navbar = () => {
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/karaoke-list">Karaoké</Link>
-      <Link to="/playlist">Playlist</Link>
-      <Link to="/blind-test">Blind Test</Link>
+    <div className="navbar-container">
+      <NavLink to="/">
+        <img className="logo-home" src={home} alt="home" />
+      </NavLink>
+
+      <NavLink to="/karaoke-list">
+        <img className="logo-karaoke" src={micro} alt="logo-micro" />
+      </NavLink>
+
+      <NavLink to="/playlist">
+        <img className="logo-playlist" src={play} alt="playlist" />
+      </NavLink>
+
+      <NavLink to="/blind-test">
+        <img className="logo-blind-test" src={cd} alt="blind-test" />
+      </NavLink>
     </div>
   );
 };

@@ -1,18 +1,23 @@
 import React from "react";
 import "./css/Home.css";
-import Navbar from "./Navbar";
+import logo from "../assets/logo.png";
+import provisoire from "../assets/home.png";
 
-const Home = () => {
+function Home() {
   return (
     <>
-      <h1>Bienvenue sur Saturday Night !</h1>
-      <p>
-        Chantez Choissisez vos musiques et chantez Créez vos propres playlist et
-        votez pour les musiques Testez vos connaissances en musique !
-      </p>
+      <img id="logo-homepage" src={logo} alt="Logo" />
+      <div className="container-home-page">
+        <h1 id="title-home-page">Saturday Night App'</h1>
+        <p id="baseline-home-page"> Dansez, chantez, jouez...</p>
+        <img src={provisoire} id="photo-home-page" alt="fete" />
+        <p id="presentation-home-page">
+          Saturday night app met de la musique dans vos soirées!
+        </p>
+      </div>
     </>
   );
-};
+}
 
 export default Home;
 partagées;
