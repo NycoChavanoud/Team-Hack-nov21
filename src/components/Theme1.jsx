@@ -1,105 +1,149 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import question from "../assets/ask.png";
-import "./css/blind-test.css";
+import _ from "lodash";
 
-const Theme1 = ({ url }) => {
-  const [playlist, setPlaylist] = useState(null);
-  // const [playing, setPlaying] = useState(false);
-  const [nextQuestion, setNextQuestion] = useState(false);
+let sound = new Audio();
+
+const Theme2 = () => {
+  const [songsToBePlayed, setSongsToBePlayed] = useState([]);
+  const [songsNotPlayed, setSongsNotPlayed] = useState([]);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [currentTrackAnswers, setCurrentTrackAnswers] = useState([]);
+  const [showJacket, setShowJacket] = useState(false);
+  const [blindTestStarted, setBlindTestStarted] = useState(false);
+  const [clikedId, setClickedId] = useState(null);
+
+  const currentTrack = songsToBePlayed[currentTrackIndex];
 
   useEffect(() => {
-    axios
-      .get(
-        "https://cors-proxy.jsrover.wilders.dev/https://api.spotify.com/v1/search?q=hit%20radio&type=playlist&market=FR&limit=1",
-        {
-          headers: {
-            Accept: "application/json",
-            ContentType: "application/json",
-            Authorization:
-              "Bearer BQAOZHZH6Cdos7HL6OZiK0YO8WQrTk-D5EiQSoliTCQ4FaXl_E4fmqivzffRlf0rixT-O_74pvQ7Ob30XUzBjLccTUCZKhUBGq70cV5gM7oxZYZ4mPw1SwosN5YgmXxNjJ_u0mCKsfxm_w",
-          },
+    setShowJacket(false);
+    if (currentTrack) {
+      sound.src = currentTrack.track.preview_url;
+      console.log(sound);
+      sound.play();
+      if (songsNotPlayed.length > 1) {
+        const answers = [];
+        for (let i = 0; i <= 2; i++) {
+          //   let trackObject = new Object(
+          //     songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
+          //   ).track;
+          //   let trackName = new Object(trackObject).name;
+          let trackName =
+            songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
+              .track.name;
+          let wrongAnswers = { id: i, name: trackName };
+          console.log(wrongAnswers);
+          answers.push(wrongAnswers);
         }
-      )
-      .then((res) => {
-        const playlistURL = res.data.playlists.items[0].tracks.href;
-        axios
-          .get(`https://cors-proxy.jsrover.wilders.dev/${playlistURL}`, {
+        answers.push({ id: 4, name: currentTrack.track.name });
+        const shuffledAnswers = _.shuffle(answers);
+        setCurrentTrackAnswers(shuffledAnswers);
+      }
+    }
+  }, [currentTrack, songsNotPlayed]);
+
+  function handleClick(id) {
+    console.log(sound);
+    sound.pause();
+
+    setClickedId(id);
+
+    setTimeout(() => {
+      //   e.target.className = "answers";
+      setClickedId(null);
+    }, 1500);
+
+    setShowJacket(true);
+
+    setTimeout(() => {
+      setCurrentTrackIndex(currentTrackIndex + 1);
+      sound.src = currentTrack.track.preview_url;
+    }, 1500);
+  }
+
+  useEffect(() => {
+    if (blindTestStarted)
+      axios
+        .get(
+          "https://cors-proxy.jsrover.wilders.dev/https://api.spotify.com/v1/search?q=hit%20radio&type=playlist&market=FR&limit=1",
+          {
             headers: {
               Accept: "application/json",
               ContentType: "application/json",
               Authorization:
-                "Bearer BQAOZHZH6Cdos7HL6OZiK0YO8WQrTk-D5EiQSoliTCQ4FaXl_E4fmqivzffRlf0rixT-O_74pvQ7Ob30XUzBjLccTUCZKhUBGq70cV5gM7oxZYZ4mPw1SwosN5YgmXxNjJ_u0mCKsfxm_w",
+                "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
             },
-          })
-          .then((res) => setPlaylist(res.data.items));
-      });
-  }, []);
+          }
+        )
+        .then((res) => {
+          const playlistURL = res.data.playlists.items[0].tracks.href;
+          axios
+            .get(`https://cors-proxy.jsrover.wilders.dev/${playlistURL}`, {
+              headers: {
+                Accept: "application/json",
+                ContentType: "application/json",
+                Authorization:
+                  "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
+              },
+            })
+            .then((res) => {
+              const shuffledPlaylist = _.shuffle(res.data.items);
+              const selectedSongs = shuffledPlaylist.slice(0, 10);
+              const dismissedSongs = shuffledPlaylist.slice(10, -1);
+              setSongsToBePlayed(selectedSongs);
+              setSongsNotPlayed(dismissedSongs);
+            });
+        });
+  }, [blindTestStarted]);
 
-  const allTracks = [];
-  const songs = [];
-  let answers = [];
-  let currentSound = "";
-  let currentTitle = "";
-  let wrongTitle1 = "";
-  let wrongTitle2 = "";
-  let wrongTitle3 = "";
-
-  if (playlist !== null) {
-    playlist.map((elem) => allTracks.push(elem.track.name));
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i <= playlist.length; i++) {
-      const randomNb = Math.floor(Math.random() * playlist.length);
-      if (!songs.includes(randomNb)) songs.push(randomNb);
-      if (songs.length === 10) break;
-    }
-    for (let i = 0; i <= songs.length; i++) {
-      currentSound = playlist[songs[0]].track.preview_url;
-      currentTitle = playlist[songs[0]].track.name;
-      wrongTitle1 = allTracks[Math.floor(Math.random() * allTracks.length)];
-      wrongTitle2 = allTracks[Math.floor(Math.random() * allTracks.length)];
-      wrongTitle3 = allTracks[Math.floor(Math.random() * allTracks.length)];
-    }
-  }
-
-  const audio = new Audio(currentSound);
-
-  useEffect(() => {
-    answers.push(currentTitle, wrongTitle1, wrongTitle2, wrongTitle3);
-    console.log(answers);
-  }, [nextQuestion]);
+  if (!blindTestStarted)
+    return (
+      <div>
+        <h2>Blind Test</h2>
+        <div className="play-container">
+          <p>Prêts ?</p>
+          <button
+            className="play-btn"
+            onClick={() => setBlindTestStarted(true)}
+          >
+            Lancez le blind test !
+          </button>
+        </div>
+      </div>
+    );
 
   return (
     <div>
       <h2>Hits du moment</h2>
       <div className="image-container">
-        <img src={question} alt="" />
+        <img
+          src={showJacket ? currentTrack.track.album.images[1].url : question}
+          alt=""
+        />
       </div>
       <div className="answers-container">
-        <div className="answers" onClick={() => setNextQuestion(!nextQuestion)}>
-          {answers[3]}
-        </div>
-        <div className="answers" onClick={() => setNextQuestion(!nextQuestion)}>
-          {answers[0]}
-        </div>
-        <div className="answers" onClick={() => setNextQuestion(!nextQuestion)}>
-          {answers[1]}
-        </div>
-        <div className="answers" onClick={() => setNextQuestion(!nextQuestion)}>
-          {answers[2]}
-        </div>
+        {currentTrackAnswers.map((answer) => (
+          <div
+            key={answer.id}
+            className={
+              showJacket
+                ? answer.name === currentTrack.track.name
+                  ? "red answers"
+                  : "pink answers"
+                : "answers"
+            }
+            onClick={() => handleClick(answer.id)}
+            style={{
+              border: clikedId === answer.id ? "2px solid #4dc2d2" : "none",
+            }}
+          >
+            {answer.name}
+          </div>
+        ))}
       </div>
-      {/* <div
-        className="overlay"
-        style={{ display: displayOverlay ? "block" : "none" }}
-      >
-        <div
-          className="vote"
-          style={{ display: displayOverlay ? "block" : "none" }}
-        ></div>
-      </div> */}
     </div>
   );
 };
 
-export default Theme1;
+export default Theme2;
