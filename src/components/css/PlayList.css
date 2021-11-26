@@ -97,6 +97,12 @@ body {
   font-family: "Fira Sans", sans-serif;
   font-size: 1em;
 }
+
+button {
+  background-color: transparent;
+  border-style: none;
+  border-radius: 10px;
+}
 @media screen and (max-width: 600px) {
   #counter-vote {
     margin-bottom: 15px;
