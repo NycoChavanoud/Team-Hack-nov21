@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/Home.css";
 import logo from "../assets/logo.png";
-import provisoire from "../assets/home.png";
+import provisoire from "../assets/headphones.png";
 
 function Home() {
   return (
