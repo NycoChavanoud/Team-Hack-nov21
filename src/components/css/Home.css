@@ -39,7 +39,7 @@
 }
 
 #photo-home-page:hover {
-  animation: bounce 1s linear;
+  animation: bounce 1s linear infinite;
 }
 
 @keyframes bounce {
