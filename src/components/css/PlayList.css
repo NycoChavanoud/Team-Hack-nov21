@@ -81,6 +81,9 @@ body {
 }
 
 #counter-vote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #4b1db6a2;
   border-style: none;
   width: 30px;
@@ -93,5 +96,4 @@ body {
   color: #f1f1f1;
   font-family: "Fira Sans", sans-serif;
   font-size: 1em;
-  text-align: center;
 }
