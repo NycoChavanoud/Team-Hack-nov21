@@ -1,8 +1,9 @@
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Home from "./components/Home";
-import KaraokeList from "./components/KaraokeList";
 import Navbar from "./components/Navbar";
+import KaraokeList from "./components/KaraokeList";
+import PlayList from "./components/PlayList";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/karaoke-list" component={KaraokeList} />
+        <Route exact path="/playlist" component={PlayList} />
       </Switch>
       <Navbar />
     </BrowserRouter>
