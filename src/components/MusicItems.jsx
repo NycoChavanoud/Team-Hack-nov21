@@ -32,7 +32,9 @@ const MusicItems = ({ songName, artist, linkKaraoke, jacket }) => {
           className="video-module"
           style={{ display: displayPopup ? "block" : "none" }}
         >
-          <button onClick={() => setDisplayPopup(false)}>X</button>
+          <button id="closekaraoke" onClick={() => setDisplayPopup(false)}>
+            X
+          </button>
           <ReactPlayer
             url={linkKaraoke}
             className="react-player"
