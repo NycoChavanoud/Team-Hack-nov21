@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lora&display=swap");
+body {
+  background-color: hsla(231, 55%, 10%, 0.9);
+  z-index: 10;
+  margin: 25px;
+}
+
+#title-playlist-page {
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 2em;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+#photo-player {
+  height: auto;
+  width: 60%;
+  border-radius: 10px;
+  margin-top: 45px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#search-song {
+  width: 58%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 30px;
+  border-radius: 20px;
+  padding-left: 20px;
+  margin-bottom: -20px;
+  background: #4b1db6a2;
+  border-style: none;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vote-title {
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.2em;
+}
+
+.count-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.vote-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#img-song-vote {
+  height: 90px;
+  width: 90px;
+  border-radius: 10px;
+}
+
+#title-song-vote {
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.7em;
+  font-weight: 500;
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
+
+#artist-song-vote {
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.6em;
+}
+
+#counter-vote {
+  background: #4b1db6a2;
+  border-style: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-top: 25px;
+  color: #f1f1f1;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  #counter-vote {
+    margin-bottom: 15px;
+    margin-top: 25px;
+  }
+
+  .vote-title {
+    margin-top: 45px;
+  }
+  #photo-player {
+    height: auto;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #search-song {
+    width: 73%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    margin-bottom: -25px;
+
+    border-style: none;
+  }
+}

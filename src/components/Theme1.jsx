@@ -72,7 +72,7 @@ const Theme2 = () => {
               Accept: "application/json",
               ContentType: "application/json",
               Authorization:
-                "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
+                "Bearer BQC7W3O2nkMdNIcfzO0A0s68eenOvW4b1GzpFY8CLxy28KgW4xbKhEmpWBKyQ5Hgo5VkiOAR0M8xVSTyqyVcam_cR-NT87eZAPTUBtCwp7ac0B2DpVTzLi5e-Dk6PmZXxKLoQHfYyA7_qA",
             },
           }
         )
@@ -84,7 +84,7 @@ const Theme2 = () => {
                 Accept: "application/json",
                 ContentType: "application/json",
                 Authorization:
-                  "Bearer BQANbOdIkwYpGIWGR9iNeEjQBjtPSnksKEQSdBE9BQ80fKkUSY6cCQncm-pmgyexASZBOMnlJY1UDQH9lQqUldVDCo4vMjFIq6FUv65hie9hN9xAmI5y1GpJCYZ60WfHVXeHLgtruYuPKA",
+                  "Bearer BQC7W3O2nkMdNIcfzO0A0s68eenOvW4b1GzpFY8CLxy28KgW4xbKhEmpWBKyQ5Hgo5VkiOAR0M8xVSTyqyVcam_cR-NT87eZAPTUBtCwp7ac0B2DpVTzLi5e-Dk6PmZXxKLoQHfYyA7_qA",
               },
             })
             .then((res) => {

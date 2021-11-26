@@ -3,7 +3,9 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "./components/Home";
 import BlindTest from "./components/BlindTest";
 import Theme1 from "./components/Theme1";
-import Theme2 from "./components/Theme2";
+import Navbar from "./components/Navbar";
+import KaraokeList from "./components/KaraokeList";
+import PlayList from "./components/PlayList";
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
           path="/blind-test/themes/hit-du-moment"
           component={Theme1}
         />
-        <Route exact path="/blind-test/themes/2000" component={Theme2} />
+        <Route exact path="/karaoke-list" component={KaraokeList} />
+        <Route exact path="/playlist" component={PlayList} />
       </Switch>
+      <Navbar />
     </BrowserRouter>
   );
 }
