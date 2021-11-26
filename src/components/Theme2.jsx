@@ -3,28 +3,25 @@ import axios from "axios";
 import question from "../assets/ask.png";
 import _ from "lodash";
 
+let sound = new Audio();
+
 const Theme2 = () => {
   const [songsToBePlayed, setSongsToBePlayed] = useState([]);
   const [songsNotPlayed, setSongsNotPlayed] = useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [currentTrackAnswers, setCurrentTrackAnswers] = useState([]);
   const [showJacket, setShowJacket] = useState(false);
-  // const [play, setPlay] = useState(false);
+  const [soundSrc, setSoundSrc] = useState("");
 
   const currentTrack = songsToBePlayed[currentTrackIndex];
-  let sound = "";
-  if (currentTrack) sound = new Audio(currentTrack.track.preview_url);
-
-  //   useEffect(() => {
-  //     if (currentTrack) sound.play();
-  //   }, []);
 
   useEffect(() => {
     setShowJacket(false);
     if (currentTrack) {
+      //   setSoundSrc(currentTrack.track.preview_url);
+      sound.src = currentTrack.track.preview_url;
       console.log(sound);
-      sound.play();
-      //   sound.pause();
+      if (soundSrc !== "") sound.play();
       if (songsNotPlayed.length > 1) {
         const answers = [];
         for (let i = 0; i <= 2; i++) {
@@ -35,25 +32,29 @@ const Theme2 = () => {
           answers.push(trackName);
         }
         answers.push(currentTrack.track.name);
-        setCurrentTrackAnswers(answers);
+        const shuffledAnswers = _.shuffle(answers);
+        setCurrentTrackAnswers(shuffledAnswers);
       }
     }
   }, [currentTrack, songsNotPlayed]);
 
   function handleClick(e) {
+    // sound.src = currentTrack.track.preview_url;
+    console.log(sound);
+    sound.pause();
+
     e.target.id = "border";
 
     setTimeout(() => {
       e.target.className = "answers";
     }, 1500);
+
     setShowJacket(true);
 
     setTimeout(() => {
       setCurrentTrackIndex(currentTrackIndex + 1);
+      setSoundSrc(currentTrack.track.preview_url);
     }, 1500);
-
-    console.log(sound);
-    sound.pause();
   }
 
   useEffect(() => {
@@ -101,8 +102,8 @@ const Theme2 = () => {
       </div>
       <div className="answers-container">
         {currentTrackAnswers.map((answer) => (
-          //   <div className="answers" onClick={handleClick}>
           <div
+            key={answer}
             className={
               showJacket
                 ? answer === currentTrack.track.name
