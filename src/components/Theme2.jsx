@@ -13,9 +13,11 @@ const Theme2 = () => {
   const currentTrack = songsToBePlayed[currentTrackIndex];
 
   function handleClick(e) {
-    if (e.target.textContent === currentTrack.track.name) {
-    }
-    e.target.className = "border answers";
+    // if (e.target.textContent === currentTrack.track.name)
+    //   e.target.className = "border red answers";
+    // else e.target.className = "border pink answers";
+
+    e.target.className = "border";
 
     setTimeout(() => {
       e.target.className = "answers";
@@ -90,7 +92,17 @@ const Theme2 = () => {
       </div>
       <div className="answers-container">
         {currentTrackAnswers.map((answer) => (
-          <div className="answers" onClick={handleClick}>
+          //   <div className="answers" onClick={handleClick}>
+          <div
+            className={
+              showJacket
+                ? answer === currentTrack.track.name
+                  ? "red answers"
+                  : "pink answers"
+                : "answers"
+            }
+            onClick={handleClick}
+          >
             {answer}
           </div>
         ))}
