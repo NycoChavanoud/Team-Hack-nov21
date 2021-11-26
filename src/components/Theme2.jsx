@@ -9,15 +9,39 @@ const Theme2 = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [currentTrackAnswers, setCurrentTrackAnswers] = useState([]);
   const [showJacket, setShowJacket] = useState(false);
+  // const [play, setPlay] = useState(false);
 
   const currentTrack = songsToBePlayed[currentTrackIndex];
+  let sound = "";
+  if (currentTrack) sound = new Audio(currentTrack.track.preview_url);
+
+  //   useEffect(() => {
+  //     if (currentTrack) sound.play();
+  //   }, []);
+
+  useEffect(() => {
+    setShowJacket(false);
+    if (currentTrack) {
+      console.log(sound);
+      sound.play();
+      //   sound.pause();
+      if (songsNotPlayed.length > 1) {
+        const answers = [];
+        for (let i = 0; i <= 2; i++) {
+          let trackObject = new Object(
+            songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
+          ).track;
+          let trackName = new Object(trackObject).name;
+          answers.push(trackName);
+        }
+        answers.push(currentTrack.track.name);
+        setCurrentTrackAnswers(answers);
+      }
+    }
+  }, [currentTrack, songsNotPlayed]);
 
   function handleClick(e) {
-    // if (e.target.textContent === currentTrack.track.name)
-    //   e.target.className = "border red answers";
-    // else e.target.className = "border pink answers";
-
-    e.target.className = "border";
+    e.target.id = "border";
 
     setTimeout(() => {
       e.target.className = "answers";
@@ -27,25 +51,10 @@ const Theme2 = () => {
     setTimeout(() => {
       setCurrentTrackIndex(currentTrackIndex + 1);
     }, 1500);
+
+    console.log(sound);
+    sound.pause();
   }
-
-  useEffect(() => {
-    setShowJacket(false);
-    if (currentTrack && songsNotPlayed.length > 1) {
-      // play audio
-      const answers = [];
-
-      for (let i = 0; i <= 2; i++) {
-        let trackObject = new Object(
-          songsNotPlayed[Math.floor(Math.random() * songsNotPlayed.length)]
-        ).track;
-        let trackName = new Object(trackObject).name;
-        answers.push(trackName);
-      }
-      answers.push(currentTrack.track.name);
-      setCurrentTrackAnswers(answers);
-    }
-  }, [currentTrack, songsNotPlayed]);
 
   useEffect(() => {
     axios
@@ -56,7 +65,7 @@ const Theme2 = () => {
             Accept: "application/json",
             ContentType: "application/json",
             Authorization:
-              "Bearer BQDAemGKwrE8JD2bI5g7kaLOqy9kaGGIYeuE1HVoD-_7zxlr7oxgmrFywl0lUPXAvni8WLcrpqQnhd_bYQOmIeRxy9X_J3JvWhyXNcDS0VpDxoAP769MjOzcq4-iZv_207kuJPF020A4KA",
+              "Bearer BQAZTCpqVCB-jgaI4jYeBHuUh0RS3B4845PpF4msinCVIFWhpfsIEFuu9ufe8zmShzpNNpGwrqqRfjrMLFo7pjiRoQnekDLKrSXQieRwET0Ip9IMnlu07llZb3EtxRO1icAeQ4j5Z8WeSw",
           },
         }
       )
@@ -68,7 +77,7 @@ const Theme2 = () => {
               Accept: "application/json",
               ContentType: "application/json",
               Authorization:
-                "Bearer BQDAemGKwrE8JD2bI5g7kaLOqy9kaGGIYeuE1HVoD-_7zxlr7oxgmrFywl0lUPXAvni8WLcrpqQnhd_bYQOmIeRxy9X_J3JvWhyXNcDS0VpDxoAP769MjOzcq4-iZv_207kuJPF020A4KA",
+                "Bearer BQAZTCpqVCB-jgaI4jYeBHuUh0RS3B4845PpF4msinCVIFWhpfsIEFuu9ufe8zmShzpNNpGwrqqRfjrMLFo7pjiRoQnekDLKrSXQieRwET0Ip9IMnlu07llZb3EtxRO1icAeQ4j5Z8WeSw",
             },
           })
           .then((res) => {

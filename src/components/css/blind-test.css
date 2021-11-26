@@ -94,6 +94,12 @@ body {
   box-sizing: border-box;
   padding-top: 32px;
   margin-bottom: 32px;
+  border-radius: 8px;
+}
+
+.genres a {
+  text-decoration: none;
+  color: white;
 }
 
 .image-container {
@@ -118,7 +124,11 @@ body {
   background-color: #9f3038;
 }
 
-.border {
+.purple {
+  background-color: #4b1db6;
+}
+
+#border {
   border: 2px solid #4dc2d2;
 }
 
@@ -126,4 +136,13 @@ h2 {
   font-size: 2.3rem;
   font-weight: 400;
   letter-spacing: 0.5px;
+}
+
+.choose {
+  margin: 32px 0;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
