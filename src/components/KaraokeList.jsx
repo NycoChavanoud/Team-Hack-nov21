@@ -21,14 +21,6 @@ const itemsMusicsFrance = [
   },
   {
     cat: "chanson française",
-    songName: "Nos plus belles années",
-    artist: "Grand Corps Malade & Kimberose ",
-    linkKaraoke: "https://youtu.be/piSu28u28zE",
-    jacket:
-      "https://lh3.googleusercontent.com/proxy/m3qC8JMXBG4ZDB1DKtyCRIhA-O5zWk4KjI7zL9ej3y3IqNaWkUuAp0ZOsFysJvjHlfBDXQ-_6WaBzlP7xth3FJsRkeS_SQFVJC5Gx5Q1rIVplx8qUEpweig",
-  },
-  {
-    cat: "chanson française",
     songName: "Avec classe",
     artist: "Corneille",
     linkKaraoke: "https://youtu.be/AsNcvIhHysk",
@@ -96,6 +88,14 @@ const itemsMusicsFrance = [
     linkKaraoke: "https://youtu.be/YCNluZc0pt0",
     jacket:
       "https://img.discogs.com/IawCQVxcc_wDTmTaIIG_VM9lPKQ=/fit-in/600x530/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-10727422-1503534399-9468.jpeg.jpg",
+  },
+  {
+    cat: "chanson française",
+    songName: "Nos plus belles années",
+    artist: "Grand Corps Malade & Kimberose ",
+    linkKaraoke: "https://youtu.be/piSu28u28zE",
+    jacket:
+      "https://lh3.googleusercontent.com/proxy/m3qC8JMXBG4ZDB1DKtyCRIhA-O5zWk4KjI7zL9ej3y3IqNaWkUuAp0ZOsFysJvjHlfBDXQ-_6WaBzlP7xth3FJsRkeS_SQFVJC5Gx5Q1rIVplx8qUEpweig",
   },
 ];
 
